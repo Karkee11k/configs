@@ -1,0 +1,5 @@
+[mgr]
+prepend_keymap = [
+    { on = "<C-y>", run = "plugin wl-clipboard -- --copy", desc = "" },
+    { on = "<C-v>", run = "plugin wl-clipboard -- --paste", desc = "" },
+]

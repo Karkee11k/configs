@@ -1,0 +1,31 @@
+let mapleader = " "
+
+set ignorecase
+set smartcase
+set clipboard=unnamedplus
+set clipboard^=ideaput
+set relativenumber
+set incsearch
+set hlsearch
+set ideajoin
+set ideastatusicon=disabled
+
+nnoremap c "_c
+nnoremap C "_C
+xnoremap c "_c
+nnoremap x "_x
+nnoremap X "_X
+xnoremap x "_x
+nnoremap <C-l> :nohlsearch<CR>
+vnoremap < <gv
+vnoremap > >gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <leader>d :action Debug<CR>
+nnoremap <leader>c :action CompileFile<CR>
+nnoremap <leader>b :action ToggleLineBreakpoint<CR>
+
+Plug 'machakann/vim-highlightedyank'
+Plug 'vim-matchit' 
+let g:highlightedyank_highlight_duration = "220"
+let g:highlightedyank_highlight_color = "rgba(33, 66, 131, 155)"

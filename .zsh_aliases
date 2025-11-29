@@ -1,0 +1,18 @@
+alias sql='mysql -u root'
+alias reinitdb='~/project-builds/db-scripts/reinitdb.sh'
+alias c='clear'
+alias e='exit'
+alias zrc='source ~/.zshrc'
+alias ..='cd ../..'
+alias ...='cd ../../..'
+alias ....='cd ../../../..'
+             
+# eza aliases
+alias ls='eza --color=auto --icons=auto'
+alias ll='ls -lF auto'
+alias la='ls -a'
+alias l='ls -CF'
+alias tree='ls --tree'
+alias tree3='tree --level=3'
+alias tree5='tree --level=5'
+alias tree7='tree --level=7'

@@ -1,0 +1,122 @@
+command_timeout = 3600
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false 
+
+format = """
+ ➜\
+$directory\
+${custom.giturl}\
+${custom.zrepo}\
+$git_branch\
+$git_state\
+$git_status\
+$hg_branch\
+$line_break\
+$character
+"""
+
+right_format = """$cmd_duration"""
+
+palette = "catppuccin_mocha"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+zrepo_green = "#01af97"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+[directory]
+style = "sapphire"
+format = "[ $path ]($style)"
+#truncation_length = 4
+#truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = "󰉍 "
+"Music" = "󰝚 "
+"Pictures" = " "
+"~/project-sources/site24x7/web_mon" = "web_mon"
+
+
+
+[custom.giturl]
+# disabled = true
+description = "Display symbol for remote Git server"
+command = """
+GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+if [[ "$GIT_REMOTE" =~ "github" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "gitlab" || "$GIT_REMOTE" =~ "git.csez.zohocorpin.com" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+else
+    GIT_REMOTE_SYMBOL=" "
+fi
+echo "$GIT_REMOTE_SYMBOL "
+"""
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null && [[ "$(git remote get-url origin)" != *zrepository* ]]'
+format = "at $output "
+
+[custom.zrepo]
+command = "echo zrepository"
+description = "For zoho respository"
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null && [[ "$(git remote get-url origin)" == *zrepository* ]]'
+style = "fg:zrepo_green bg:black"
+format = "at [](black)[$output]($style)[](black)"
+
+[git_branch]
+symbol = "[](black) "
+# format =  ' [$symbol$branch(:$remote_branch)]($style)[]'
+style = "fg:lavender bg:black"
+format =  ' on [$symbol$branch]($style)[](black)'
+
+
+[git_status]
+format = ' [($all_status$ahead_behind )]($style)'
+
+
+[hg_branch]
+symbol = "[](black) "
+style = "fg:lavender bg:black"
+format =  'at [](black)[zrepository](fg:zrepo_green bg:black)[](black) on [$symbol$branch]($style)[](black) '
+disabled = false
+
+
+[line_break]
+disabled = true
+
+[character]
+disabled = false
+success_symbol = '[𝘹](bold fg:green)'
+error_symbol = '[𝘹](bold fg:red)'
+vimcmd_symbol = '[](bold fg:creen)'
+vimcmd_replace_one_symbol = '[](bold fg:purple)'
+vimcmd_replace_symbol = '[](bold fg:purple)'
+vimcmd_visual_symbol = '[](bold fg:lavender)'
